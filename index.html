@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abokash - Premium Real Estate & Land Development</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #303951;
+            --gradient-1: linear-gradient(135deg, #303951 0%, #4a5d7e 100%);
+            --gradient-2: linear-gradient(135deg, #2c3448 0%, #303951 50%, #4a5d7e 100%);
+            --accent-color: #f39c12;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(243, 156, 18, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--gradient-1) !important;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(48, 57, 81, 0.8) 0%, rgba(74, 93, 126, 0.6) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn-custom {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.5);
+            background: #e67e22;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            background: #128c7e;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 20%;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 500px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease, transform 0.4s ease;
+            position: relative;
+        }
+
+        /* Primary-color gradient overlay to improve text readability */
+        .project-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(48,57,81,0.55) 0%, rgba(48,57,81,0.15) 50%, rgba(48,57,81,0.55) 100%);
+            pointer-events: none;
+            transition: background 0.35s ease, opacity 0.35s ease;
+            z-index: 2;
+        }
+
+        .project-card.flipped .project-image {
+            background-image: var(--back-image) !important;
+        }
+
+        /* Keep overlay present when flipped; slightly strengthen for contrast */
+        .project-card.flipped .project-image::before {
+            background: linear-gradient(180deg, rgba(48,57,81,0.75) 0%, rgba(48,57,81,0.3) 50%, rgba(48,57,81,0.75) 100%);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .project-badge.sold-out {
+            background: #e74c3c;
+        }
+
+        .project-badge.ongoing {
+            background: #35d291;
+            color: white;
+            transform-origin: center;
+            will-change: transform, box-shadow;
+            animation: heartbeat 2s infinite ease-in-out;
+        }
+
+        .project-badge.upcoming {
+            background: #c4903c;
+        }
+
+        /* Heartbeat animation for ongoing badge: two quick pulses then pause */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(53,210,145,0);
+            }
+            10% {
+                transform: scale(1.12);
+                box-shadow: 0 10px 20px rgba(53,210,145,0.22);
+            }
+            20% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(53,210,145,0);
+            }
+            30% {
+                transform: scale(1.08);
+                box-shadow: 0 8px 18px rgba(53,210,145,0.18);
+            }
+            40% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(53,210,145,0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(53,210,145,0);
+            }
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(48, 57, 81, 0.95) 0%, transparent 100%);
+            color: white;
+            z-index: 5;
+        }
+
+        .project-content h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-map, .btn-details {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-map:hover, .btn-details:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-book-project {
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-book-project:hover:not(:disabled) {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .btn-book-project:disabled, .btn-details:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            opacity: 0.6;
+            border-color: #95a5a6;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 2px solid rgba(48, 57, 81, 0.08);
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover .feature-number {
+            color: white;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            color: #666;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .feature-box:hover .feature-text {
+            color: white;
+        }
+
+        /* Other Features */
+        .other-features-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .other-feature-box {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid rgba(48, 57, 81, 0.05);
+        }
+
+        .other-feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+        }
+
+        .other-feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .other-feature-box:hover .other-feature-icon {
+            color: white;
+        }
+
+        .other-feature-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .other-feature-box:hover .other-feature-title {
+            color: white;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 80px 0;
+            background: var(--gradient-2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1920') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .reviews-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .reviewer-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid var(--accent-color);
+            object-fit: cover;
+        }
+
+        .stars {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 50px 0;
+            background: white;
+        }
+
+        .team-wrapper {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 0;
+            min-height: 60vh; /* Reserve space for absolutely positioned team cards */
+        }
+
+        .team-card {
+            text-align: center;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        /* CEO - Center Top */
+        .team-card:nth-child(1) {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            z-index: 5;
+        }
+
+        /* Second - Left */
+        .team-card:nth-child(2) {
+            left: 0%;
+            top: 100px;
+        }
+
+        /* Third - Right */
+        .team-card:nth-child(3) {
+            right: 0%;
+            top: 100px;
+        }
+
+        /* Fourth - Lower Left */
+        .team-card:nth-child(4) {
+            left: 15%;
+            top: 300px;
+        }
+
+        /* Fifth - Lower Right */
+        .team-card:nth-child(5) {
+            right: 15%;
+            top: 300px;
+        }
+
+        .team-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid var(--primary-color);
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover .team-img {
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+        }
+
+        .team-card:nth-child(1) .team-img {
+            width: 200px;
+            height: 200px;
+            border-width: 6px;
+        }
+
+        .team-card h4 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            color: #666;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .contact-info {
+            /* background: white; */
+            background: var(--gradient-2);
+            color: white;
+            /* color: var(--primary-color); */
+            padding: 40px;
+            border-radius: 15px;
+            height: 100%;
+            transition: all 0.5s;
+            border: 2px solid rgba(48, 57, 81, 0.1);
+        }
+
+        .contact-info:hover {
+            background: var(--gradient-1);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        /* Layout for the icon + heading pairs inside contact-info */
+        .contact-info > .mb-4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info i {
+            font-size: 1.6rem;
+            color: white; /* default white */
+            display: inline-block;
+            vertical-align: middle;
+            transition: color 0.25s ease;
+        }
+
+        .contact-info h5 {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            color: white; /* default white */
+            font-weight: 700; /* bold */
+            font-size: 1rem;
+            transition: color 0.25s ease;
+        }
+
+        .contact-info:hover i,
+        .contact-info:hover h5 {
+            color: var(--accent-color); /* orange on hover */
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(48, 57, 81, 0.25);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gradient-1);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Gallery modal sizing and carousel image constraints */
+        .gallery-modal {
+            --gm-max-width: 980px;
+        }
+
+        .gallery-modal .modal-dialog {
+            max-width: var(--gm-max-width);
+        }
+
+        .gallery-modal .modal-body {
+            max-height: 75vh; /* shorten modal vertically */
+            overflow-y: auto;
+        }
+
+        /* Make carousel images fit left column (approx 60%) and shorter */
+        .gallery-modal .carousel-inner img {
+            width: 100%;
+            height: 60vh;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Thumbnails styling when on right column */
+        .gallery-thumbnails {
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+
+        .gallery-thumbnails img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .location-details {
+            padding: 20px;
+        }
+
+        .location-details h5 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .location-details p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        /* Gallery Modal */
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery-thumbnails img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .gallery-thumbnails img:hover,
+        .gallery-thumbnails img.active {
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .team-card {
+                position: relative !important;
+                left: auto !important;
+                right: auto !important;
+                top: auto !important;
+                transform: none !important;
+                margin-bottom: 50px;
+            }
+            
+            .team-wrapper {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .project-card {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="./assets/logo.png" alt="" height="55px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <div id="heroCarousel" class="carousel slide hero-slider" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active hero-slide" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920');">
+                <div class="hero-content">
+                    <h1>Welcome to Abokash</h1>
+                    <p>Your Dream Home Awaits - Premium Land & Real Estate Development</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
+                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920');">
+                <div class="hero-content">
+                    <h1>Luxury Living Spaces</h1>
+                    <p>Experience the Perfect Blend of Comfort and Elegance</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
+                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920');">
+                <div class="hero-content">
+                    <h1>Invest in Your Future</h1>
+                    <p>Prime Locations with Excellent ROI Opportunities</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
+                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/8801678054660" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Projects</h2>
+                <p>Discover our exclusive real estate developments</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="project-card" data-front-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" data-back-img="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800');"></div>
+                        <span class="project-badge sold-out">SOLD OUT</span>
+                        <div class="project-content">
+                            <h3>Abokash-1</h3>
+                            <p>Currently available! Modern residential plots with world-class facilities.</p>
+                            <div class="project-buttons">
+                                <button class="btn-book-project" data-bs-toggle="modal" data-bs-target="#bookingModal" disabled>Book Now</button>
+                                <button class="btn-map" onclick="openMapModal('Abokash-1')"><i class="fas fa-map-marker-alt"></i> Map</button>
+                                <button class="btn-details" onclick="openGallery('project1')"><i class="fas fa-info-circle"></i> Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="project-card" data-front-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" data-back-img="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800');"></div>
+                        <span class="project-badge ongoing">ON GOING</span>
+                        <div class="project-content">
+                            <h3>Abokash-2</h3>
+                            <p>Currently available! Modern residential plots with world-class facilities.</p>
+                            <div class="project-buttons">
+                                <button class="btn-book-project" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                                <button class="btn-map" onclick="openMapModal('Abokash-2')"><i class="fas fa-map-marker-alt"></i> Map</button>
+                                <button class="btn-details" onclick="openGallery('project2')"><i class="fas fa-info-circle"></i> Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="project-card" data-front-img="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800" data-back-img="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800">
+                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800');"></div>
+                        <span class="project-badge upcoming">UP COMING</span>
+                        <div class="project-content">
+                            <h3>Abokash-3</h3>
+                            <p>Coming soon! Our most ambitious project featuring luxury villas.</p>
+                            <div class="project-buttons">
+                                <button class="btn-book-project" disabled>Book Now</button>
+                                <button class="btn-map" onclick="openMapModal('Abokash-3')"><i class="fas fa-map-marker-alt"></i> Map</button>
+                                <button class="btn-details" disabled><i class="fas fa-info-circle"></i> Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Property Features</h2>
+                <p>Everything you need for a perfect lifestyle</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="feature-box">
+                        <div class="feature-number">3</div>
+                        <div class="feature-text">Bedrooms</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-box">
+                        <div class="feature-number">1500</div>
+                        <div class="feature-text">SQFT</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-number">2</div>
+                        <div class="feature-text">Bathrooms</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-box">
+                        <div class="feature-number">24/7</div>
+                        <div class="feature-text">Security</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="feature-box">
+                        <div class="feature-number"><i class="fas fa-car"></i></div>
+                        <div class="feature-text">Parking</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="feature-box">
+                        <div class="feature-number"><i class="fas fa-swimming-pool"></i></div>
+                        <div class="feature-text">Swimming Pool</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="feature-box">
+                        <div class="feature-number"><i class="fas fa-dumbbell"></i></div>
+                        <div class="feature-text">Gym</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="feature-box">
+                        <div class="feature-number"><i class="fas fa-tree"></i></div>
+                        <div class="feature-text">Garden</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Features Section -->
+    <section class="other-features-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Additional Amenities</h2>
+                <p>Premium facilities for modern living</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="0">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-charging-station"></i></div>
+                        <div class="other-feature-title">Generator</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="100">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-child"></i></div>
+                        <div class="other-feature-title">Playground</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-mosque"></i></div>
+                        <div class="other-feature-title">Mosque</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="300">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-school"></i></div>
+                        <div class="other-feature-title">School Nearby</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="400">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-elevator"></i></div>
+                        <div class="other-feature-title">Lift</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="500">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-wifi"></i></div>
+                        <div class="other-feature-title">WiFi</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="600">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="other-feature-title">Shopping Mall</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="700">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-hospital"></i></div>
+                        <div class="other-feature-title">Hospital</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2 style="color: white;">Client Reviews</h2>
+                <p style="color: rgba(255,255,255,0.8);">What our happy clients say about us</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="review-card">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Reviewer" class="reviewer-img">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Excellent service and beautiful property! The team at Abokash made our dream home a reality. Highly recommended!"</p>
+                        <h5>Md. Karim Ahmed</h5>
+                        <small>Happy Homeowner</small>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="review-card">
+                        <img src="https://i.pravatar.cc/150?img=47" alt="Reviewer" class="reviewer-img">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Professional team, transparent process, and quality construction. We're extremely satisfied with our investment!"</p>
+                        <h5>Fatima Rahman</h5>
+                        <small>Investor</small>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="review-card">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Reviewer" class="reviewer-img">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Best decision we ever made! The location is perfect and the amenities are world-class. Thank you Abokash!"</p>
+                        <h5>Rahim Hossain</h5>
+                        <small>Resident</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Leadership</h2>
+                <p>Meet the experts behind Abokash</p>
+            </div>
+            <div class="team-wrapper" data-aos="fade-up">
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/200?img=68" alt="Manager" class="team-img">
+                    <h4>Abul Hasan</h4>
+                    <p>CEO & Managing Director</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/200?img=51" alt="Manager" class="team-img">
+                    <h4>Nasrin Akter</h4>
+                    <p>Project Manager</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/200?img=14" alt="Manager" class="team-img">
+                    <h4>Shahidul Islam</h4>
+                    <p>Sales Director</p>
+                </div>
+                <!-- <div class="team-card">
+                    <img src="https://i.pravatar.cc/200?img=52" alt="Manager" class="team-img">
+                    <h4>Ayesha Siddique</h4>
+                    <p>Marketing Head</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/200?img=33" alt="Manager" class="team-img">
+                    <h4>Rafiqul Alam</h4>
+                    <p>Operations Manager</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us today</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="contact-info">
+                        <div class="mt-4 mb-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h5 class="mt-2">Address</h5>
+                        </div>
+                        <p>123 Main Street, Dhaka, Bangladesh</p>
+                        <div class="mt-4 mb-3">
+                            <i class="fas fa-phone"></i>
+                            <h5 class="mt-2">Phone</h5>
+                        </div>
+                        <p>01678-054660 (WhatsApp), <br>01704-715452</p>
+                        <div class="mt-4 mb-3">
+                            <i class="fas fa-envelope"></i>
+                            <h5 class="mt-2">Email</h5>
+                        </div>
+                        <p>info@abokash.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5" style="background: white;">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>About Abokash</h2>
+                <p>Your trusted partner in real estate</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" alt="About" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3 class="mb-4" style="color: var(--primary-color);">Building Dreams Since 2015</h3>
+                    <p>Abokash is a leading real estate development company committed to creating premium residential and commercial properties. With over 8 years of experience, we have successfully delivered numerous projects that have transformed the landscape of modern living.</p>
+                    <p>Our mission is to provide quality homes and investment opportunities that exceed expectations. We believe in transparency, integrity, and customer satisfaction above all.</p>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <h4 style="color: var(--accent-color);">500+</h4>
+                            <p>Happy Families</p>
+                        </div>
+                        <div class="col-6">
+                            <h4 style="color: var(--accent-color);">15+</h4>
+                            <p>Projects Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Abokash Real Estate. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-calendar-check me-2"></i>Book an Appointment</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" placeholder="+880 1XXX-XXXXXX" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Time</label>
+                            <input type="time" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Project Interest</label>
+                            <select class="form-control" required>
+                                <option value="">Select Project</option>
+                                <option value="abokash-1">Abokash-1</option>
+                                <option value="abokash-2">Abokash-2</option>
+                                <option value="abokash-3">Abokash-3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message (Optional)</label>
+                            <textarea class="form-control" rows="3" placeholder="Any specific requirements?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom w-100">Confirm Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-map-marked-alt me-2"></i><span id="mapProjectName"></span> Location</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="map-container">
+                                <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9009315832974!2d90.41022931543405!3d23.810290484558364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7000000000%3A0x0!2zMjPCsDQ4JzM3LjAiTiA5MMKwMjQnNDcuNiJF!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="location-details">
+                                <h5>Location Details</h5>
+                                <p><i class="fas fa-map-marker-alt text-danger me-2"></i><strong>Address:</strong> Plot 123, Road 45, Gulshan, Dhaka-1212</p>
+                                <p><i class="fas fa-road text-primary me-2"></i><strong>Nearby:</strong> 2 minutes from Gulshan Circle</p>
+                                <p><i class="fas fa-bus text-success me-2"></i><strong>Transport:</strong> Direct bus route available</p>
+                                <p><i class="fas fa-hospital text-info me-2"></i><strong>Hospital:</strong> 5 minutes drive</p>
+                                <p><i class="fas fa-school text-warning me-2"></i><strong>School:</strong> 3 minutes walk</p>
+                                <p><i class="fas fa-shopping-cart text-purple me-2"></i><strong>Shopping:</strong> Multiple malls nearby</p>
+                                <a href="https://maps.google.com/?q=23.8103,90.4125" target="_blank" class="btn btn-custom mt-3 w-100"><i class="fas fa-directions me-2"></i>Get Directions</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered gallery-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-images me-2"></i>Description of <b><span id="galleryProjectName"></span></b></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-3">
+                    <div class="container-fluid">
+                        <div class="row g-3 align-items-start">
+                            <div class="col-lg-7">
+                                <div id="projectGalleryCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner" id="galleryCarouselInner">
+                                        <!-- Images will be loaded here -->
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </button>
+                                </div>
+                                <div class="gallery-thumbnails d-flex flex-wrap" id="galleryThumbnails">
+                                    <!-- Thumbnails will be loaded here -->
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div id="galleryText" class="mb-3">
+                                    <h5 id="galleryProjectTitle" style="color: var(--primary-color); font-weight:700;">Project Overview</h5>
+                                    <p id="galleryProjectDescription" style="color:#444;">High-resolution images and project highlights. Use the thumbnails below to jump to specific images.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .project-card, .feature-box, .other-feature-box, .review-card, .team-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 70
+                }, 1000);
+            }
+        });
+
+        // Project card flip on hover
+        $('.project-card').on('mouseenter', function() {
+            if (!$(this).hasClass('flipped')) {
+                $(this).addClass('flipped');
+                const backImg = $(this).data('back-img');
+                $(this).css('--back-image', `url('${backImg}')`);
+            }
+        });
+
+        // Booking form submission
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for booking! Our team will contact you shortly.');
+            $('#bookingModal').modal('hide');
+            this.reset();
+        });
+
+        // Contact form submission
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for contacting us! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Open map modal
+        function openMapModal(projectName) {
+            $('#mapProjectName').text(projectName);
+            $('#mapModal').modal('show');
+        }
+
+        // Gallery data
+        const galleryData = {
+            project1: {
+                name: 'Abokash-1',
+                images: [
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200',
+                    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200',
+                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200',
+                    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200'
+                ]
+            },
+            project2: {
+                name: 'Abokash-2',
+                images: [
+                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200',
+                    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200',
+                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200',
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200'
+                ]
+            }
+        };
+
+        // Open gallery
+        function openGallery(projectId) {
+            const project = galleryData[projectId];
+            if (!project) return;
+
+            $('#galleryProjectName').text(project.name);
+            
+            // Load carousel images
+            let carouselHTML = '';
+            project.images.forEach((img, index) => {
+                carouselHTML += `
+                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                        <img src="${img}" class="d-block w-100" style="height: 300px; object-fit: cover; border-radius: 10px;" alt="Project Image">
+                    </div>
+                `;
+            });
+            $('#galleryCarouselInner').html(carouselHTML);
+
+            // Ensure gallery carousel uses a faster interval and is reinitialized
+            const galleryCarouselEl = document.getElementById('projectGalleryCarousel');
+            if (galleryCarouselEl) {
+                const existing = bootstrap.Carousel.getInstance(galleryCarouselEl);
+                if (existing) existing.dispose();
+                // interval: 2000ms (2s), pause on hover, allow wrapping
+                new bootstrap.Carousel(galleryCarouselEl, { interval: 2000, pause: 'hover', wrap: true });
+            }
+
+            // Load thumbnails
+            let thumbnailsHTML = '';
+            project.images.forEach((img, index) => {
+                thumbnailsHTML += `
+                    <img src="${img}" class="${index === 0 ? 'active' : ''}" onclick="jumpToSlide(${index})" alt="Thumbnail">
+                `;
+            });
+            $('#galleryThumbnails').html(thumbnailsHTML);
+
+            $('#galleryModal').modal('show');
+        }
+
+        // Jump to specific slide
+        function jumpToSlide(index) {
+            const carousel = new bootstrap.Carousel(document.getElementById('projectGalleryCarousel'));
+            carousel.to(index);
+            
+            // Update active thumbnail
+            $('#galleryThumbnails img').removeClass('active');
+            $('#galleryThumbnails img').eq(index).addClass('active');
+        }
+
+        // Update thumbnail on carousel slide
+        $('#projectGalleryCarousel').on('slid.bs.carousel', function (e) {
+            const index = $(e.relatedTarget).index();
+            $('#galleryThumbnails img').removeClass('active');
+            $('#galleryThumbnails img').eq(index).addClass('active');
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.feature-number');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const text = counter.textContent.trim();
+                if (!isNaN(text) && text !== '') {
+                    counter.setAttribute('data-target', text);
+                    counter.textContent = '0';
+                    
+                    const animate = () => {
+                        const value = +counter.getAttribute('data-target');
+                        const data = +counter.innerText;
+                        const time = value / speed;
+                        if (data < value) {
+                            counter.innerText = Math.ceil(data + time);
+                            setTimeout(animate, 1);
+                        } else {
+                            counter.innerText = value;
+                        }
+                    };
+                    animate();
+                }
+            });
+        };
+
+        // Trigger counter animation on scroll
+        let counterAnimated = false;
+        $(window).on('scroll', function() {
+            var featuresSection = $('#features');
+            if (featuresSection.length) {
+                var hT = featuresSection.offset().top;
+                var hH = featuresSection.outerHeight();
+                var wH = $(window).height();
+                var wS = $(this).scrollTop();
+                if (wS > (hT + hH - wH) && !counterAnimated) {
+                    animateCounters();
+                    counterAnimated = true;
+                }
+            }
+        });
+
+        // Add active class to nav items
+        $(window).on('scroll', function() {
+            var scrollPos = $(document).scrollTop();
+            $('.nav-link').each(function() {
+                var currLink = $(this);
+                var refElement = $(currLink.attr("href"));
+                if (refElement.length && refElement.position().top - 100 <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                    $('.nav-link').removeClass("active");
+                    currLink.addClass("active");
+                }
+            });
+        });
+
+        // Carousel auto-play settings
+        var myCarousel = document.querySelector('#heroCarousel');
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 5000,
+            wrap: true,
+            keyboard: true
+        });
+    </script>
+</body>
+</html>
