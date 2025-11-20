@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abokash - Premium Real Estate & Land Development</title>
+    <title>Abokash - অবকাশ</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -448,6 +448,28 @@
         }
 
         .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+        }
+
+        .about-feature-box {
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 2px solid rgba(48, 57, 81, 0.08);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-feature-box:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             background: var(--gradient-1);
@@ -1306,17 +1328,27 @@
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" alt="About" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <h3 class="mb-4" style="color: var(--primary-color);">Building Dreams Since 2015</h3>
+                    <h3 class="mb-4 mt-4" style="color: var(--primary-color);">Building Dreams Since 2015</h3>
                     <p>Abokash is a leading real estate development company committed to creating premium residential and commercial properties. With over 8 years of experience, we have successfully delivered numerous projects that have transformed the landscape of modern living.</p>
                     <p>Our mission is to provide quality homes and investment opportunities that exceed expectations. We believe in transparency, integrity, and customer satisfaction above all.</p>
                     <div class="row mt-4">
-                        <div class="col-6">
-                            <h4 style="color: var(--accent-color);">500+</h4>
-                            <p>Happy Families</p>
+                        <div class="col-4">
+                            <div class="about-feature-box">
+                                <h4 style="color: var(--accent-color);">500+</h4>
+                                <p>Happy Families</p>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <h4 style="color: var(--accent-color);">15+</h4>
-                            <p>Projects Completed</p>
+                        <div class="col-4">
+                            <div class="about-feature-box">
+                                <h4 style="color: var(--accent-color);">15+</h4>
+                                <p>Projects Completed</p>
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="about-feature-box">
+                                <h4 style="color: var(--accent-color);">10+</h4>
+                                <p>Awards Won</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1352,17 +1384,17 @@
                 <div class="modal-body p-4">
                     <form id="bookingForm">
                         <div class="mb-3">
-                            <label class="form-label">Full Name</label>
+                            <label class="form-label">Name</label>
                             <input type="text" class="form-control" placeholder="Enter your name" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mobile Number</label>
                             <input type="tel" class="form-control" placeholder="+880 1XXX-XXXXXX" required>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label">Email Address</label>
                             <input type="email" class="form-control" placeholder="your@email.com" required>
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <label class="form-label">Preferred Date</label>
                             <input type="date" class="form-control" required>
@@ -1371,7 +1403,7 @@
                             <label class="form-label">Preferred Time</label>
                             <input type="time" class="form-control" required>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label">Project Interest</label>
                             <select class="form-control" required>
                                 <option value="">Select Project</option>
@@ -1379,10 +1411,10 @@
                                 <option value="abokash-2">Abokash-2</option>
                                 <option value="abokash-3">Abokash-3</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <label class="form-label">Message (Optional)</label>
-                            <textarea class="form-control" rows="3" placeholder="Any specific requirements?"></textarea>
+                            <textarea class="form-control" rows="2" placeholder="Any specific requirements?"></textarea>
                         </div>
                         <button type="submit" class="btn btn-custom w-100">Confirm Appointment</button>
                     </form>
