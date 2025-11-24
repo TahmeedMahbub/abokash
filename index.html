@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'XerodaRegular';
+            src: url('./assets/XerodaRegular.otf') format('opentype');
+        }
+
         :root {
             --primary-color: #303951;
             --gradient-1: linear-gradient(135deg, #303951 0%, #4a5d7e 100%);
@@ -129,6 +134,7 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, rgba(48, 57, 81, 0.8) 0%, rgba(74, 93, 126, 0.6) 100%);
+            pointer-events: none;
         }
 
         .hero-content {
@@ -144,6 +150,7 @@
         }
 
         .hero-content h1 {
+            font-family: 'XerodaRegular', sans-serif;
             font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
@@ -248,6 +255,7 @@
         }
 
         .section-title h2 {
+            font-family: 'XerodaRegular', sans-serif;
             font-size: 2.5rem;
             font-weight: bold;
             color: var(--primary-color);
@@ -377,6 +385,7 @@
         }
 
         .project-content h3 {
+            font-family: 'XerodaRegular', sans-serif;
             font-size: 2rem;
             margin-bottom: 15px;
         }
@@ -912,6 +921,19 @@
                 height: 400px;
             }
         }
+
+        /* Ensure carousel controls/indicators sit above overlays and are clickable on touch devices */
+        .carousel-control-prev,
+        .carousel-control-next,
+        .carousel-indicators {
+            z-index: 20;
+        }
+
+        /* Hide custom pointer on touch devices and allow native cursor behavior */
+        @media (hover: none), (pointer: coarse), (max-width: 768px) {
+            * { cursor: auto !important; }
+            .custom-cursor, .cursor-dot { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -928,12 +950,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home" data-i18n="nav.home">হোম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects" data-i18n="nav.projects">প্রকল্পসমূহ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features" data-i18n="nav.features">সুবিধাসমূহ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews" data-i18n="nav.reviews">রিভিউ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team" data-i18n="nav.team">টিম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav.contact">যোগাযোগ</a></li>
+                    <li class="nav-item"><a id="lang-toggle" class="nav-link" href="#">English</a></li>
                 </ul>
             </div>
         </div>
@@ -949,31 +972,31 @@
         <div class="carousel-inner">
             <div class="carousel-item active hero-slide" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920');">
                 <div class="hero-content">
-                    <h1>Welcome to Abokash</h1>
-                    <p>Your Dream Home Awaits - Premium Land & Real Estate Development</p>
+                    <h1 data-i18n="hero.slide1.title">অবকাশ-এ স্বাগতম</h1>
+                    <p data-i18n="hero.slide1.desc">আপনার স্বপ্নের বাড়ি অপেক্ষা করছে — প্রিমিয়াম জমি ও বাস্তব সম্পত্তি ডেভেলপমেন্ট</p>
                     <div class="hero-buttons">
-                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
-                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                        <button class="btn btn-custom" data-i18n="book_appointment" data-bs-toggle="modal" data-bs-target="#bookingModal">অ্যাপয়েন্টমেন্ট বুক করুন</button>
+                        <a href="https://api.whatsapp.com/send/?phone=8801678054660&text=Hello.+I+am+interested+in+%2AAbokash%2A+project.+Please+share+the+details.&type=phone_number&app_absent=0" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i><span data-i18n="contact_whatsapp">হোয়াটসঅ্যাপ এ যোগাযোগ</span></a>
                     </div>
                 </div>
             </div>
             <div class="carousel-item hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920');">
                 <div class="hero-content">
-                    <h1>Luxury Living Spaces</h1>
-                    <p>Experience the Perfect Blend of Comfort and Elegance</p>
+                    <h1 data-i18n="hero.slide2.title">ভবমান্য জীবনযাপন স্পেস</h1>
+                    <p data-i18n="hero.slide2.desc">স্বাচ্ছন্দ্য ও নান্দনিকতার নিখুঁত সমন্বয় অনুভব করুন</p>
                     <div class="hero-buttons">
-                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
-                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                        <button class="btn btn-custom" data-i18n="book_appointment" data-bs-toggle="modal" data-bs-target="#bookingModal">অ্যাপয়েন্টমেন্ট বুক করুন</button>
+                        <a href="https://api.whatsapp.com/send/?phone=8801678054660&text=Hello.+I+am+interested+in+%2AAbokash%2A+project.+Please+share+the+details.&type=phone_number&app_absent=0" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i><span data-i18n="contact_whatsapp">হোয়াটসঅ্যাপ এ যোগাযোগ</span></a>
                     </div>
                 </div>
             </div>
             <div class="carousel-item hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920');">
                 <div class="hero-content">
-                    <h1>Invest in Your Future</h1>
-                    <p>Prime Locations with Excellent ROI Opportunities</p>
+                    <h1 data-i18n="hero.slide3.title">আপনার ভবিষ্যতে বিনিয়োগ করুন</h1>
+                    <p data-i18n="hero.slide3.desc">প্রধান অবস্থান ও চমৎকার বিনিয়োগ সুযোগ</p>
                     <div class="hero-buttons">
-                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#bookingModal">Book an Appointment</button>
-                        <a href="https://wa.me/8801678054660" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i>Contact by WhatsApp</a>
+                        <button class="btn btn-custom" data-i18n="book_appointment" data-bs-toggle="modal" data-bs-target="#bookingModal">অ্যাপয়েন্টমেন্ট বুক করুন</button>
+                        <a href="https://api.whatsapp.com/send/?phone=8801678054660&text=Hello.+I+am+interested+in+%2AAbokash%2A+project.+Please+share+the+details.&type=phone_number&app_absent=0" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp me-2"></i><span data-i18n="contact_whatsapp">হোয়াটসঅ্যাপ এ যোগাযোগ</span></a>
                     </div>
                 </div>
             </div>
@@ -987,7 +1010,7 @@
     </div>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/8801678054660" target="_blank" class="whatsapp-float">
+    <a href="https://api.whatsapp.com/send/?phone=8801678054660&text=Hello.+I+am+interested+in+%2AAbokash%2A+project.+Please+share+the+details.&type=phone_number&app_absent=0" target="_blank" class="whatsapp-float" style="text-decoration: none;">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -995,21 +1018,21 @@
     <section id="projects" class="projects-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Our Projects</h2>
-                <p>Discover our exclusive real estate developments</p>
+                <h2 data-i18n="projects.title">আমাদের প্রকল্প</h2>
+                <p data-i18n="projects.desc">আমাদের এক্সক্লুসিভ রিয়েল এস্টেট ডেভেলপমেন্টগুলো দেখুন</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4" data-aos="fade-right">
                     <div class="project-card" data-front-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" data-back-img="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800">
                         <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800');"></div>
-                        <span class="project-badge sold-out">SOLD OUT</span>
+                        <span class="project-badge sold-out" data-i18n="badge.sold">বিক্রি সম্পন্ন</span>
                         <div class="project-content">
-                            <h3>Abokash-1</h3>
-                            <p>Currently available! Modern residential plots with world-class facilities.</p>
+                            <h3 data-i18n="project.abokash1.title">Abokash-1</h3>
+                            <p data-i18n="project.abokash1.desc">বর্তমানে উপলব্ধ! বিশ্বমানের সুযোগ-সুবিধাসহ আধুনিক আবাসিক প্লট।</p>
                             <div class="project-buttons">
-                                <button class="btn-book-project" data-bs-toggle="modal" data-bs-target="#bookingModal" disabled>Book Now</button>
-                                <button class="btn-map" onclick="openMapModal('Abokash-1')"><i class="fas fa-map-marker-alt"></i> Map</button>
-                                <button class="btn-details" onclick="openGallery('project1')"><i class="fas fa-info-circle"></i> Details</button>
+                                <button class="btn-book-project" data-i18n="book_now" data-bs-toggle="modal" data-bs-target="#bookingModal" disabled>বুক করুন</button>
+                                <button class="btn-map" data-i18n="map" onclick="openMapModal('Abokash-1')"><i class="fas fa-map-marker-alt"></i> ম্যাপ</button>
+                                <button class="btn-details" data-i18n="details" onclick="openGallery('project1')"><i class="fas fa-info-circle"></i> বিস্তারিত</button>
                             </div>
                         </div>
                     </div>
@@ -1017,14 +1040,14 @@
                 <div class="col-lg-4" data-aos="fade-right">
                     <div class="project-card" data-front-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" data-back-img="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800">
                         <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800');"></div>
-                        <span class="project-badge ongoing">ON GOING</span>
+                        <span class="project-badge ongoing" data-i18n="badge.ongoing">চলমান</span>
                         <div class="project-content">
-                            <h3>Abokash-2</h3>
-                            <p>Currently available! Modern residential plots with world-class facilities.</p>
+                            <h3 data-i18n="project.abokash2.title">Abokash-2</h3>
+                            <p data-i18n="project.abokash2.desc">বর্তমানে উপলব্ধ! বিশ্বমানের সুযোগ-সুবিধাসহ আধুনিক আবাসিক প্লট।</p>
                             <div class="project-buttons">
-                                <button class="btn-book-project" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
-                                <button class="btn-map" onclick="openMapModal('Abokash-2')"><i class="fas fa-map-marker-alt"></i> Map</button>
-                                <button class="btn-details" onclick="openGallery('project2')"><i class="fas fa-info-circle"></i> Details</button>
+                                <button class="btn-book-project" data-i18n="book_now" data-bs-toggle="modal" data-bs-target="#bookingModal">বুক করুন</button>
+                                <button class="btn-map" data-i18n="map" onclick="openMapModal('Abokash-2')"><i class="fas fa-map-marker-alt"></i> ম্যাপ</button>
+                                <button class="btn-details" data-i18n="details" onclick="openGallery('project2')"><i class="fas fa-info-circle"></i> বিস্তারিত</button>
                             </div>
                         </div>
                     </div>
@@ -1032,14 +1055,14 @@
                 <div class="col-lg-4" data-aos="fade-left">
                     <div class="project-card" data-front-img="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800" data-back-img="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800">
                         <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800');"></div>
-                        <span class="project-badge upcoming">UP COMING</span>
+                        <span class="project-badge upcoming" data-i18n="badge.upcoming">শীঘ্রই</span>
                         <div class="project-content">
-                            <h3>Abokash-3</h3>
-                            <p>Coming soon! Our most ambitious project featuring luxury villas.</p>
+                            <h3 data-i18n="project.abokash3.title">Abokash-3</h3>
+                            <p data-i18n="project.abokash3.desc">শীঘ্রই আসছে! আমাদের সবচেয়ে উচ্চাকাঙ্ক্ষী বিলাসবহুল ভিলা প্রকল্প।</p>
                             <div class="project-buttons">
-                                <button class="btn-book-project" disabled>Book Now</button>
-                                <button class="btn-map" onclick="openMapModal('Abokash-3')"><i class="fas fa-map-marker-alt"></i> Map</button>
-                                <button class="btn-details" disabled><i class="fas fa-info-circle"></i> Details</button>
+                                <button class="btn-book-project" data-i18n="book_now" disabled>বুক করুন</button>
+                                <button class="btn-map" data-i18n="map" onclick="openMapModal('Abokash-3')"><i class="fas fa-map-marker-alt"></i> ম্যাপ</button>
+                                <button class="btn-details" data-i18n="details" disabled><i class="fas fa-info-circle"></i> বিস্তারিত</button>
                             </div>
                         </div>
                     </div>
@@ -1052,56 +1075,92 @@
     <section id="features" class="features-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Property Features</h2>
-                <p>Everything you need for a perfect lifestyle</p>
+                <h2 data-i18n="features.title">প্রপার্টি সুবিধাসমূহ</h2>
+                <p data-i18n="features.desc">সুন্দর ও সুসম জীবনের জন্য প্রয়োজনীয় প্রতিটি সুবিধা</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="0">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
                     <div class="feature-box">
                         <div class="feature-number">3</div>
                         <div class="feature-text">Bedrooms</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="feature-box">
+                        <div class="feature-number">3</div>
+                        <div class="feature-text">Bathrooms</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="feature-box">
+                        <div class="feature-number">3</div>
+                        <div class="feature-text">Balcony</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
                     <div class="feature-box">
                         <div class="feature-number">1500</div>
                         <div class="feature-text">SQFT</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
                     <div class="feature-box">
-                        <div class="feature-number">2</div>
-                        <div class="feature-text">Bathrooms</div>
+                        <div class="feature-number">4</div>
+                        <div class="feature-text">Units</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-number">10</div>
+                        <div class="feature-text">Katha Land</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-number">52</div>
+                        <div class="feature-text">Flats</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-number">200</div>
+                        <div class="feature-text">Feet ECB-Kalshi Road</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-number">40</div>
+                        <div class="feature-text">Feet Connected Road</div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
                     <div class="feature-box">
                         <div class="feature-number">24/7</div>
                         <div class="feature-text">Security</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="400">
                     <div class="feature-box">
                         <div class="feature-number"><i class="fas fa-car"></i></div>
                         <div class="feature-text">Parking</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="500">
                     <div class="feature-box">
                         <div class="feature-number"><i class="fas fa-swimming-pool"></i></div>
                         <div class="feature-text">Swimming Pool</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="600">
                     <div class="feature-box">
                         <div class="feature-number"><i class="fas fa-dumbbell"></i></div>
                         <div class="feature-text">Gym</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="700">
+                <div class="col-6 col-sm-6 col-md-3" data-aos="zoom-in" data-aos-delay="700">
                     <div class="feature-box">
-                        <div class="feature-number"><i class="fas fa-tree"></i></div>
-                        <div class="feature-text">Garden</div>
+                        <div class="feature-number"><i class="fa-sharp fa-solid fa-shop"></i></div>
+                        <div class="feature-text">Commercial Space</div>
                     </div>
                 </div>
             </div>
@@ -1112,56 +1171,57 @@
     <section class="other-features-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Additional Amenities</h2>
-                <p>Premium facilities for modern living</p>
+                <h2 data-i18n="amenities.title">অতিরিক্ত সুবিধাসমূহ</h2>
+                <p data-i18n="amenities.desc">আধুনিক জীবনের জন্য প্রিমিয়াম সুবিধা</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="0">
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="0">
                     <div class="other-feature-box">
                         <div class="other-feature-icon"><i class="fas fa-charging-station"></i></div>
                         <div class="other-feature-title">Generator</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="100">
-                    <div class="other-feature-box">
-                        <div class="other-feature-icon"><i class="fas fa-child"></i></div>
-                        <div class="other-feature-title">Playground</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
-                    <div class="other-feature-box">
-                        <div class="other-feature-icon"><i class="fas fa-mosque"></i></div>
-                        <div class="other-feature-title">Mosque</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="300">
-                    <div class="other-feature-box">
-                        <div class="other-feature-icon"><i class="fas fa-school"></i></div>
-                        <div class="other-feature-title">School Nearby</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="400">
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="400">
                     <div class="other-feature-box">
                         <div class="other-feature-icon"><i class="fas fa-elevator"></i></div>
                         <div class="other-feature-title">Lift</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="500">
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="300">
                     <div class="other-feature-box">
-                        <div class="other-feature-icon"><i class="fas fa-wifi"></i></div>
-                        <div class="other-feature-title">WiFi</div>
+                        <div class="other-feature-icon"><i class="fas fa-school"
+                            .></i></div>
+                        <div class="other-feature-title">School</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="600">
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="200">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-mosque"></i></div>
+                        <div class="other-feature-title">Mosque</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="100">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-child"></i></div>
+                        <div class="other-feature-title">Playground</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="700">
+                    <div class="other-feature-box">
+                        <div class="other-feature-icon"><i class="fas fa-hospital"></i></div>
+                        <div class="other-feature-title">Hospital</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="600">
                     <div class="other-feature-box">
                         <div class="other-feature-icon"><i class="fas fa-shopping-cart"></i></div>
                         <div class="other-feature-title">Shopping Mall</div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="700">
+                <div class="col-6 col-md-3 col-sm-6" data-aos="flip-up" data-aos-delay="600">
                     <div class="other-feature-box">
-                        <div class="other-feature-icon"><i class="fas fa-hospital"></i></div>
-                        <div class="other-feature-title">Hospital</div>
+                        <div class="other-feature-icon"><i class="fa-solid fa-dungeon"></i></div>
+                        <div class="other-feature-title">Convention Hall</div>
                     </div>
                 </div>
             </div>
@@ -1172,8 +1232,8 @@
     <section id="reviews" class="reviews-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2 style="color: white;">Client Reviews</h2>
-                <p style="color: rgba(255,255,255,0.8);">What our happy clients say about us</p>
+                <h2 style="color: white;" data-i18n="reviews.title">সম্মানীত ক্লায়েন্টদের রিভিউ</h2>
+                <p style="color: rgba(255,255,255,0.8);" data-i18n="reviews.desc">আমাদের সন্তুষ্ট ক্লায়েন্টরা যা বলেন</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
@@ -1229,24 +1289,33 @@
     <section id="team" class="team-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Our Leadership</h2>
-                <p>Meet the experts behind Abokash</p>
+                <h2 data-i18n="team.title">আমাদের নেতৃত্ব</h2>
+                <p data-i18n="team.desc">যাদের নেতৃত্বে "অবকাশ" এর পথচলা</p>
             </div>
             <div class="team-wrapper" data-aos="fade-up">
                 <div class="team-card">
-                    <img src="https://i.pravatar.cc/200?img=68" alt="Manager" class="team-img">
-                    <h4>Abul Hasan</h4>
-                    <p>CEO & Managing Director</p>
+                    <img src="./assets/mahbub.jpg" alt="Manager" class="team-img">
+                    <h4>Mahbub Ul Faruk</h4>
+                    <p>Bangladesh Air Force (Retired)
+                        <br>
+                        <b>Contact:</b> 01678054660
+                    </p>
                 </div>
                 <div class="team-card">
-                    <img src="https://i.pravatar.cc/200?img=51" alt="Manager" class="team-img">
-                    <h4>Nasrin Akter</h4>
-                    <p>Project Manager</p>
+                    <img src="./assets/mukul.jpeg" alt="Manager" class="team-img">
+                    <h4>Mukul Faruk</h4>
+                    <p>Bangladesh Army (Retired)
+                        <br>
+                        <b>Contact:</b> 01678054658
+                    </p>
                 </div>
                 <div class="team-card">
-                    <img src="https://i.pravatar.cc/200?img=14" alt="Manager" class="team-img">
-                    <h4>Shahidul Islam</h4>
-                    <p>Sales Director</p>
+                    <img src="./assets/menon.jpeg" alt="Manager" class="team-img">
+                    <h4>Rabbejul Menon</h4>
+                    <p>Bangladesh Airforce (Retired)
+                        <br>
+                        <b>Contact:</b> 01678054660
+                    </p>
                 </div>
                 <!-- <div class="team-card">
                     <img src="https://i.pravatar.cc/200?img=52" alt="Manager" class="team-img">
@@ -1266,27 +1335,27 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Contact Us</h2>
-                <p>Get in touch with us today</p>
+                <h2 data-i18n="contact.title">যোগাযোগ করুন</h2>
+                <p data-i18n="contact.desc">আজই আমাদের সাথে যোগাযোগ করুন</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4" data-aos="fade-right">
                     <div class="contact-info">
                         <div class="mt-4 mb-3">
                             <i class="fas fa-map-marker-alt"></i>
-                            <h5 class="mt-2">Address</h5>
+                            <h5 class="mt-2" data-i18n="contact.address_label">ঠিকানা</h5>
                         </div>
-                        <p>123 Main Street, Dhaka, Bangladesh</p>
+                        <p data-i18n="contact.address">মিরপুর-১৩, ঢাকা</p>
                         <div class="mt-4 mb-3">
                             <i class="fas fa-phone"></i>
-                            <h5 class="mt-2">Phone</h5>
+                            <h5 class="mt-2" data-i18n="contact.phone_label">ফোন</h5>
                         </div>
-                        <p>01678-054660 (WhatsApp), <br>01704-715452</p>
+                        <p data-i18n="contact.phone">01678-054660 (WhatsApp), <br>01704-715452</p>
                         <div class="mt-4 mb-3">
                             <i class="fas fa-envelope"></i>
-                            <h5 class="mt-2">Email</h5>
+                            <h5 class="mt-2" data-i18n="contact.email_label">ইমেইল</h5>
                         </div>
-                        <p>info@abokash.com</p>
+                        <p>mahbub168@gmail.com</p>
                     </div>
                 </div>
                 <div class="col-lg-8" data-aos="fade-left">
@@ -1306,7 +1375,7 @@
                                     <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                                    <button type="submit" class="btn btn-custom w-100" data-i18n="send_message">পাঠান</button>
                                 </div>
                             </div>
                         </form>
@@ -1320,22 +1389,22 @@
     <section id="about" class="py-5" style="background: white;">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>About Abokash</h2>
-                <p>Your trusted partner in real estate</p>
+                <h2 data-i18n="about.title">অবকাশ সম্পর্কে</h2>
+                <p data-i18n="about.desc">নিরাপদ ভবিষ্যত গড়তে আপনার বিশ্বস্ত অংশীদার</p>
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" alt="About" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <h3 class="mb-4 mt-4" style="color: var(--primary-color);">Building Dreams Since 2015</h3>
-                    <p>Abokash is a leading real estate development company committed to creating premium residential and commercial properties. With over 8 years of experience, we have successfully delivered numerous projects that have transformed the landscape of modern living.</p>
-                    <p>Our mission is to provide quality homes and investment opportunities that exceed expectations. We believe in transparency, integrity, and customer satisfaction above all.</p>
+                    <h3 class="mb-4 mt-4" style="color: var(--primary-color);" data-i18n="about.tag">স্বপ্ন পূরনের নতুন সম্ভাবনা</h3>
+                    <p data-i18n="about.p1">অবকাশ একটি শীর্ষস্থানীয় রিয়েল এস্টেট ডেভেলপমেন্ট কোম্পানি, যা প্রিমিয়াম আবাসিক ও বাণিজ্যিক সম্পত্তি তৈরি করতে প্রতিশ্রুতিবদ্ধ। ৮ বছরেরও বেশি অভিজ্ঞতায় আমরা বহু প্রকল্প সফলভাবে বাস্তবায়ন করেছি।</p>
+                    <p data-i18n="about.p2">আমাদের লক্ষ্য উচ্চমানের বাড়ি এবং বিনিয়োগের সুযোগ প্রদান করা যা প্রত্যাশা ছাড়িয়ে যায়। আমরা স্বচ্ছতা, সততা এবং গ্রাহক সন্তুষ্টিকে সর্বোচ্চ অগ্রাধিকার দিই।</p>
                     <div class="row mt-4">
                         <div class="col-4">
                             <div class="about-feature-box">
-                                <h4 style="color: var(--accent-color);">500+</h4>
-                                <p>Happy Families</p>
+                                <h4 style="color: var(--accent-color);">70+</h4>
+                                <p>পরিবার</p>
                             </div>
                         </div>
                         <div class="col-4">
@@ -1361,7 +1430,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2024 Abokash Real Estate. All rights reserved.</p>
+                    <p data-i18n="footer.copyright" style="color: var(--accent-color); font-family: 'XerodaRegular', sans-serif;">&copy; 2024 Abokash রিয়েল এস্টেট। সর্বস্বত্ব সংরক্ষিত।</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
@@ -1378,7 +1447,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-calendar-check me-2"></i>Book an Appointment</h5>
+                    <h5 class="modal-title"><i class="fas fa-calendar-check me-2"></i><span data-i18n="booking.title">অ্যাপয়েন্টমেন্ট বুক করুন</span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -1416,7 +1485,7 @@
                             <label class="form-label">Message (Optional)</label>
                             <textarea class="form-control" rows="2" placeholder="Any specific requirements?"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-custom w-100">Confirm Appointment</button>
+                        <button type="submit" class="btn btn-custom w-100" data-i18n="booking.confirm">নিশ্চিত করুন</button>
                     </form>
                 </div>
             </div>
@@ -1428,7 +1497,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-map-marked-alt me-2"></i><span id="mapProjectName"></span> Location</h5>
+                    <h5 class="modal-title"><i class="fas fa-map-marked-alt me-2"></i><span id="mapProjectName"></span> <span data-i18n="map.location">অবস্থান</span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -1440,14 +1509,14 @@
                         </div>
                         <div class="col-lg-5">
                             <div class="location-details">
-                                <h5>Location Details</h5>
+                                <h5 data-i18n="map.details">অবস্থান সংক্রান্ত তথ্য</h5>
                                 <p><i class="fas fa-map-marker-alt text-danger me-2"></i><strong>Address:</strong> Plot 123, Road 45, Gulshan, Dhaka-1212</p>
                                 <p><i class="fas fa-road text-primary me-2"></i><strong>Nearby:</strong> 2 minutes from Gulshan Circle</p>
                                 <p><i class="fas fa-bus text-success me-2"></i><strong>Transport:</strong> Direct bus route available</p>
                                 <p><i class="fas fa-hospital text-info me-2"></i><strong>Hospital:</strong> 5 minutes drive</p>
                                 <p><i class="fas fa-school text-warning me-2"></i><strong>School:</strong> 3 minutes walk</p>
                                 <p><i class="fas fa-shopping-cart text-purple me-2"></i><strong>Shopping:</strong> Multiple malls nearby</p>
-                                <a href="https://maps.google.com/?q=23.8103,90.4125" target="_blank" class="btn btn-custom mt-3 w-100"><i class="fas fa-directions me-2"></i>Get Directions</a>
+                                <a href="https://maps.google.com/?q=23.8103,90.4125" target="_blank" class="btn btn-custom mt-3 w-100" data-i18n="map.directions"><i class="fas fa-directions me-2"></i>দিকনির্দেশনা পান</a>
                             </div>
                         </div>
                     </div>
@@ -1461,7 +1530,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered gallery-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-images me-2"></i>Description of <b><span id="galleryProjectName"></span></b></h5>
+                    <h5 class="modal-title"><i class="fas fa-images me-2"></i><span data-i18n="gallery.title">বর্ণনা</span> <b><span id="galleryProjectName"></span></b></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-3">
@@ -1485,8 +1554,8 @@
                             </div>
                             <div class="col-lg-5">
                                 <div id="galleryText" class="mb-3">
-                                    <h5 id="galleryProjectTitle" style="color: var(--primary-color); font-weight:700;">Project Overview</h5>
-                                    <p id="galleryProjectDescription" style="color:#444;">High-resolution images and project highlights. Use the thumbnails below to jump to specific images.</p>
+                                    <h5 id="galleryProjectTitle" style="color: var(--primary-color); font-weight:700;" data-i18n="gallery.overview">প্রকল্পের সংক্ষিপ্ত বিবরণ</h5>
+                                        <p id="galleryProjectDescription" style="color:#444;" data-i18n="gallery.desc">উচ্চ রেজোলিউশনের ছবি ও প্রকল্পের হাইলাইট। থাম্বনেইলের উপর ক্লিক করে নির্দিষ্ট ছবিতে যান।</p>
                                 </div>
                             </div>
                         </div>
@@ -1500,21 +1569,151 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+        // Translations and language toggle
+        const translations = {
+            "nav.home": {bn: 'হোম', en: 'Home'},
+            "nav.projects": {bn: 'প্রকল্পসমূহ', en: 'Projects'},
+            "nav.features": {bn: 'সুবিধাসমূহ', en: 'Features'},
+            "nav.reviews": {bn: 'রিভিউ', en: 'Reviews'},
+            "nav.team": {bn: 'টিম', en: 'Team'},
+            "nav.contact": {bn: 'যোগাযোগ', en: 'Contact'},
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
+            "hero.slide1.title": {bn: 'অবকাশ-এ স্বাগতম', en: 'Welcome to Abokash'},
+            "hero.slide1.desc": {bn: 'আপনার স্বপ্নের বাড়ি অপেক্ষা করছে — প্রিমিয়াম জমি ও বাস্তব সম্পত্তি ডেভেলপমেন্ট', en: 'Your Dream Home Awaits - Premium Land & Real Estate Development'},
+            "hero.slide2.title": {bn: 'ভবমান্য জীবনযাপন স্পেস', en: 'Luxury Living Spaces'},
+            "hero.slide2.desc": {bn: 'স্বাচ্ছন্দ্য ও নান্দনিকতার নিখুঁত সমন্বয় অনুভব করুন', en: 'Experience the Perfect Blend of Comfort and Elegance'},
+            "hero.slide3.title": {bn: 'আপনার ভবিষ্যতে বিনিয়োগ করুন', en: 'Invest in Your Future'},
+            "hero.slide3.desc": {bn: 'প্রধান অবস্থান ও চমৎকার বিনিয়োগ সুযোগ', en: 'Prime Locations with Excellent ROI Opportunities'},
 
-        document.querySelectorAll('a, button, .project-card, .feature-box, .other-feature-box, .review-card, .team-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
+            "book_appointment": {bn: 'অ্যাপয়েন্টমেন্ট বুক করুন', en: 'Book an Appointment'},
+            "contact_whatsapp": {bn: 'হোযাটসঅ্যাপ এ যোগাযোগ', en: 'Contact by WhatsApp'},
+
+            "projects.title": {bn: 'আমাদের প্রকল্প', en: 'Our Projects'},
+            "projects.desc": {bn: 'আমাদের এক্সক্লুসিভ রিয়েল এস্টেট ডেভেলপমেন্টগুলো দেখুন', en: 'Discover our exclusive real estate developments'},
+
+            "badge.sold": {bn: 'বিক্রি সম্পন্ন', en: 'SOLD OUT'},
+            "badge.ongoing": {bn: 'চলমান', en: 'ON GOING'},
+            "badge.upcoming": {bn: 'শীঘ্রই', en: 'UP COMING'},
+
+            "project.abokash1.title": {bn: 'Abokash-1', en: 'Abokash-1'},
+            "project.abokash1.desc": {bn: 'বর্তমানে উপলব্ধ! বিশ্বমানের সুযোগ-সুবিধাসহ আধুনিক আবাসিক প্লট।', en: 'Currently available! Modern residential plots with world-class facilities.'},
+            "project.abokash2.title": {bn: 'Abokash-2', en: 'Abokash-2'},
+            "project.abokash2.desc": {bn: 'বর্তমানে উপলব্ধ! বিশ্বমানের সুযোগ-সুবিধাসহ আধুনিক আবাসিক প্লট।', en: 'Currently available! Modern residential plots with world-class facilities.'},
+            "project.abokash3.title": {bn: 'Abokash-3', en: 'Abokash-3'},
+            "project.abokash3.desc": {bn: 'শীঘ্রই আসছে! আমাদের সবচেয়ে উচ্চাকাঙ্ক্ষী বিলাসবহুল ভিলা প্রকল্প।', en: 'Coming soon! Our most ambitious project featuring luxury villas.'},
+
+            "book_now": {bn: 'বুক করুন', en: 'Book Now'},
+            "map": {bn: 'ম্যাপ', en: 'Map'},
+            "details": {bn: 'বিস্তারিত', en: 'Details'},
+
+            "features.title": {bn: 'প্রপার্টি সুবিধাসমূহ', en: 'Property Features'},
+            "features.desc": {bn: 'সুন্দর ও সুসম জীবনের জন্য প্রয়োজনীয় প্রতিটি সুবিধা', en: 'Everything you need for a perfect lifestyle'},
+
+            "amenities.title": {bn: 'অতিরিক্ত সুবিধাসমূহ', en: 'Additional Amenities'},
+            "amenities.desc": {bn: 'আধুনিক জীবনের জন্য প্রিমিয়াম সুবিধা', en: 'Premium facilities for modern living'},
+
+            "reviews.title": {bn: 'সম্মানীত ক্লায়েন্টদের রিভিউ', en: 'Client Reviews'},
+            "reviews.desc": {bn: 'আমাদের সন্তুষ্ট ক্লায়েন্টরা যা বলেন', en: 'What our happy clients say about us'},
+
+            "team.title": {bn: 'আমাদের নেতৃত্ব', en: 'Our Leadership'},
+            "team.desc": {bn: 'যাদের নেতৃত্বে "অবকাশ" এর পথচলা, ', en: 'Meet the experts behind Abokash'},
+
+            "contact.title": {bn: 'যোগাযোগ করুন', en: 'Contact Us'},
+            "contact.desc": {bn: 'আজই আমাদের সাথে যোগাযোগ করুন', en: 'Get in touch with us today'},
+            "contact.address_label": {bn: 'ঠিকানা', en: 'Address'},
+            "contact.address": {bn: 'মিরপুর-১৩, ঢাকা', en: 'Mirpur-13, Dhaka'},
+            "contact.phone_label": {bn: 'ফোন', en: 'Phone'},
+            "contact.phone": {bn: '01678-054660 (WhatsApp), 01704-715452', en: '01678-054660 (WhatsApp), 01704-715452'},
+            "contact.email_label": {bn: 'ইমেইল', en: 'Email'},
+
+            "send_message": {bn: 'পাঠান', en: 'Send Message'},
+
+            "about.title": {bn: 'অবকাশ সম্পর্কে', en: 'About Abokash'},
+            "about.desc": {bn: 'নিরাপদ ভবিষ্যত গড়তে আপনার বিশ্বস্ত অংশীদার', en: 'Your dream home, our commitment'},
+            "about.tag": {bn: 'অবকাশ-এ স্বপ্ন পূরনের নতুন সম্ভাবনা', en: ''},
+            "about.p1": {bn: 'অবকাশ একটি শীর্ষস্থানীয় রিয়েল এস্টেট ডেভেলপমেন্ট কোম্পানি, যা প্রিমিয়াম আবাসিক ও বাণিজ্যিক সম্পত্তি তৈরি করতে প্রতিশ্রুতিবদ্ধ। ৮ বছরেরও বেশি অভিজ্ঞতায় আমরা বহু প্রকল্প সফলভাবে বাস্তবায়ন করেছি।', en: 'Abokash is a leading real estate development company committed to creating premium residential and commercial properties. With over 8 years of experience, we have successfully delivered numerous projects.'},
+            "about.p2": {bn: 'আমাদের লক্ষ্য উচ্চমানের বাড়ি এবং বিনিয়োগের সুযোগ প্রদান করা যা প্রত্যাশা ছাড়িয়ে যায়। আমরা স্বচ্ছতা, সততা এবং গ্রাহক সন্তুষ্টিকে সর্বোচ্চ অগ্রাধিকার দিই।', en: 'Our mission is to provide quality homes and investment opportunities that exceed expectations.'},
+
+            "footer.copyright": {bn: '© 2024 Abokash রিয়েল এস্টেট। সর্বস্বত্ব সংরক্ষিত।', en: '© 2024 Abokash Real Estate. All rights reserved.'},
+
+            "booking.title": {bn: 'অ্যাপয়েন্টমেন্ট বুক করুন', en: 'Book an Appointment'},
+            "booking.confirm": {bn: 'নিশ্চিত করুন', en: 'Confirm Appointment'},
+
+            "map.location": {bn: 'অবস্থান', en: 'Location'},
+            "map.details": {bn: 'অবস্থান সংক্রান্ত তথ্য', en: 'Location Details'},
+            "map.directions": {bn: 'দিকনির্দেশনা পান', en: 'Get Directions'},
+
+            "gallery.title": {bn: 'বর্ণনা', en: 'Description'},
+            "gallery.overview": {bn: 'প্রকল্পের সংক্ষিপ্ত বিবরণ', en: 'Project Overview'},
+            "gallery.desc": {bn: 'উচ্চ রেজোলিউশনের ছবি ও প্রকল্পের হাইলাইট। থাম্বনেইলের উপর ক্লিক করে নির্দিষ্ট ছবিতে যান।', en: 'High-resolution images and project highlights. Use the thumbnails below to jump to specific images.'}
+        };
+
+        function setLang(lang) {
+            if (!lang) lang = 'bn';
+            document.documentElement.lang = (lang === 'en') ? 'en' : 'bn';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (!key) return;
+                const entry = translations[key];
+                if (!entry) return;
+                // preserve simple HTML where needed (allow <br>)
+                el.innerHTML = entry[lang] || entry['bn'] || el.innerHTML;
+            });
+            // toggler shows the target language in that language
+            const toggle = document.getElementById('lang-toggle');
+            if (toggle) {
+                toggle.textContent = (lang === 'bn') ? 'English' : 'বাংলা';
+            }
+            // update URL param without reloading
+            try {
+                const url = new URL(window.location);
+                if (lang === 'bn') url.searchParams.delete('lang'); else url.searchParams.set('lang', 'en');
+                history.replaceState({}, '', url);
+            } catch (e) {}
+        }
+
+        // initialize language from URL param or default
+        (function(){
+            const params = new URLSearchParams(window.location.search);
+            const lang = (params.get('lang') === 'en') ? 'en' : 'bn';
+            // set initial content (page defaults are Bangla already), then apply if en requested
+            setLang(lang);
+            // wire up toggle link
+            const toggle = document.getElementById('lang-toggle');
+            if (toggle) {
+                toggle.addEventListener('click', function(e){
+                    e.preventDefault();
+                    const current = document.documentElement.lang === 'en' ? 'en' : 'bn';
+                    const next = current === 'bn' ? 'en' : 'bn';
+                    setLang(next);
+                });
+            }
+        })();
+
+        // Custom Cursor (disabled on touch devices)
+        (function(){
+            const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+            const cursorEl = document.querySelector('.custom-cursor');
+            const cursorDotEl = document.querySelector('.cursor-dot');
+            if (isTouchDevice) {
+                if (cursorEl) cursorEl.style.display = 'none';
+                if (cursorDotEl) cursorDotEl.style.display = 'none';
+                try { document.documentElement.style.cursor = 'auto'; } catch(e){}
+                return;
+            }
+            if (!cursorEl || !cursorDotEl) return;
+            document.addEventListener('mousemove', (e) => {
+                cursorEl.style.left = e.clientX + 'px';
+                cursorEl.style.top = e.clientY + 'px';
+                cursorDotEl.style.left = e.clientX + 'px';
+                cursorDotEl.style.top = e.clientY + 'px';
+            });
+
+            document.querySelectorAll('a, button, .project-card, .feature-box, .other-feature-box, .review-card, .team-card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorEl.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorEl.classList.remove('hover'));
+            });
+        })();
 
         // Initialize AOS
         AOS.init({
@@ -1580,7 +1779,6 @@
                 images: [
                     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200',
                     'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200',
-                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200',
                     'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200'
                 ]
             },
@@ -1589,7 +1787,6 @@
                 images: [
                     'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200',
                     'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200',
-                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200',
                     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200'
                 ]
             }
@@ -1710,9 +1907,11 @@
         // Carousel auto-play settings
         var myCarousel = document.querySelector('#heroCarousel');
         var carousel = new bootstrap.Carousel(myCarousel, {
-            interval: 5000,
+            interval: 2000,
             wrap: true,
-            keyboard: true
+            keyboard: true,
+            touch: true,
+            pause: 'hover'
         });
     </script>
 </body>
